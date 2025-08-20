@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Brikk Copilot",
+  "version": "1.0",
+  "description": "Tu co-piloto con IA para analizar inversiones inmobiliarias en Idealista.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://www.idealista.com/*",
+    "https://brikklens-api.vercel.app/*" 
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icono.png",
+      "48": "icono.png",
+      "128": "icono.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.idealista.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

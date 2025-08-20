@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Favoritos - BrikkLens</title>
+    <link rel="stylesheet" href="popup.css">
+    <style>
+      body {
+        font-family: "Segoe UI", Roboto, sans-serif;
+        font-size: 14px;
+        padding: 10px;
+        min-width: 300px;
+        max-height: 500px;
+        overflow-y: auto;
+        color: #1e1e1e;
+        background-color: #f9f7fc;
+      }
+      h2 {
+        margin-top: 0;
+        color: #7B61FF;
+      }
+      h3 {
+        margin: 5px 0;
+        color: #555;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .favorito {
+        border-bottom: 1px solid #ddd;
+        padding: 6px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .favorito a {
+        color: #7B61FF;
+        text-decoration: none;
+      }
+      .favorito a:hover {
+        text-decoration: underline;
+      }
+      .vacío {
+        color: #888;
+        font-style: italic;
+      }
+      button {
+        margin-top: 8px;
+        background-color: #7B61FF;
+        color: white;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        width: 100%;
+      }
+      button:hover {
+        background-color: #6346e0;
+      }
+      .borrar-individual {
+        background: none;
+        border: none;
+        color: #888;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 2px;
+        margin-left: 4px;
+      }
+      .borrar-individual:hover {
+        color: #7B61FF;
+      }
+      .toggle-alerta {
+        cursor: pointer;
+        font-size: 16px;
+        padding: 2px;
+        margin-right: 4px;
+        transition: color 0.2s ease, transform 0.2s ease;
+      }
+      .toggle-alerta.activo {
+        color: #7B61FF;
+      }
+      .toggle-alerta.activo:hover {
+        color: #6346e0;
+        transform: scale(1.1);
+      }
+      .toggle-alerta.inactivo {
+        color: #888;
+      }
+      .toggle-alerta.inactivo:hover {
+        color: #666;
+        transform: scale(1.05);
+      }
+      .controles {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .seleccionar {
+        margin-right: 8px;
+      }
+      #comparar-btn {
+        margin-top: 8px;
+        width: 100%;
+        display: none; /* Oculto por defecto */
+      }
+      #comparar-btn.active {
+        display: block;
+      }
+      .comparacion-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      .comparacion-table th,
+      .comparacion-table td {
+        border: 1px solid #ddd;
+        padding: 6px;
+        text-align: left;
+      }
+      .comparacion-table th {
+        background-color: #f1efff;
+        color: #7B61FF;
+      }
+      .comparacion-table td {
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+  <h1><span class="icon">📊</span> Brikk</h1>
+  <h2><span class="icon">📁</span> Favoritos</h2>
+
+  <div class="controls-bar">
+    <div class="control-group">
+      <label for="filter-status">Filtrar por estado:</label>
+      <select id="filter-status">
+        <option value="todos">Todos</option>
+        <option value="Prospecto">Prospecto</option>
+        <option value="Analizando">Analizando</option>
+        <option value="Contacto Realizado">Contacto Realizado</option>
+        <option value="Visitado">Visitado</option>
+        <option value="Oferta Realizada">Oferta Realizada</option>
+        <option value="Descartado">Descartado</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <label for="sort-by">Ordenar por:</label>
+      <select id="sort-by">
+        <option value="fecha">Fecha (recientes primero)</option>
+        <option value="precio-asc">Precio (menor a mayor)</option>
+        <option value="precio-desc">Precio (mayor a menor)</option>
+        <option value="rentabilidad-desc">Rentabilidad (mayor a menor)</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="lista-favoritos">
+    <div class="vacío">Cargando favoritos...</div>
+  </div>
+  
+  <div id="comparacion-container"></div>
+
+  <div class="main-buttons">
+    <button id="comparar-btn" disabled>Comparar seleccionados</button>
+    <button id="export-csv-btn">Exportar a CSV</button>
+    <button id="borrar-todo">Borrar todos</button>
+  </div>
+
+  <script src="popup.js"></script>
+  
+</body>
+</html>
+
+
